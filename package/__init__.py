@@ -33,7 +33,7 @@ def contact():
     subject = flask.request.form['subject']
     message = flask.request.form['message']
     send_mail(name, subject, email, message)
-    return 'Your message has been sent. I will get back to you shortly. Thank you'
+    return 'Your message has been sent. I will get back to you shortly. Thank you.'
 
 if __name__ == "__main__":
     app.run(port=8000)
