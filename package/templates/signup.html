@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Spanish verb conjugator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/static/all_verbs.js"></script>
+        <script src="/static/index.js"></script>
+        <link rel = "stylesheet" type = "text/css" href = "/static/login.css"/>
+    </head>
+    <body>
+        <div class='top'>
+          <div class='app-header'>
+            Spanish verb conjugator
+          </div>
+          <div class=user-input>
+            <div class="innerbox">
+              <form id="client-login">
+                  <p class='account'>
+                    <a href="/new-account.html">Create an account</a>
+                  </p>
+
+                  <div class="entry">
+                    <label for='name'>
+                      Name
+                    </label>
+                    <input class="field" id="name" type="text" name="name" value="">
+                  </div>
+                  <div class="entry">
+                    <label for='username'>
+                      Username
+                    </label>
+                    <input class="field" id="username" type="text" name="username" value="">
+                  </div>
+                  <div class="entry">
+                    <label for='password'>Password</label>
+                    <input class="field" id="password" type="password" name="password" value="">
+                  </div>
+                  <div class="entry">
+                    <label for='password'>Reenter your password</label>
+                    <input class="field" id="password" type="password" name="password" value="">
+                  </div>
+
+                  <div class='login'>
+                    <input class="field"  id="sub" type="submit" value="Log in"/>
+                  </div>
+
+                  <div class="password-message">
+                  </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+    </body>
+</html>

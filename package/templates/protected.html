@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Spanish verb conjugator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/static/vocab.js"></script>
+        <script src="/static/all_verbs.js"></script>
+        <script src="/static/index.js"></script>
+        <script src="/static/protected.js"></script>
+        <link rel = "stylesheet" type = "text/css" href = "/static/index.css"/>
+    </head>
+    <body onload='loadQuestion()'>
+        <div class='top'>
+          <div class='app-header'>
+            <div class='leftmost'>
+              Spanish verb conjugator
+            </div>
+            <div class='rightmost' id='username'>
+              {{user}}
+            </div>
+          </div>
+
+          <div class=user-input>
+            <div class=left-menu>
+              <form id="verb-entry">
+                <input id="verb" type="text" name="URL" placeholder="enter a verb" value="">
+              </form>
+              <div class='or'> || </div>
+              <div class='random'>get a random verb</div>
+            </div>
+            <div class=right-menu>
+              <div class='help'>
+                <a class='help-link' onclick="showHelp()" href="#">Help </a>
+              </div>
+              <div class='right-items'><a onclick="popup()" href="#">Favorites <span id='number'>({{num}})</span> </a></div>
+              <div class='right-items'><a href="/logout">Log out</a></div>
+            </div>
+          </div>
+
+          <div class="keyboard">
+            <div class='character' onclick = "writeChar('í')">í</div>
+            <div class='character' onclick = "writeChar('ú')">ú</div>
+            <div class='character' onclick = "writeChar('é')">é</div>
+            <div class='character' onclick = "writeChar('ó')">ó</div>
+            <div class='character' onclick = "writeChar('á')">á</div>
+            <div class='character' onclick = "writeChar('ñ')">ñ</div>
+          </div>
+
+          <div class='verb'>
+            <div class='base'></div>
+            <div class='trans'></div>
+            <div class='add-history'><a onclick='saveVerb(currentVerb)'>Save to Favorites</a></div>
+            <div class='added' hidden>Verb saved</div>
+            <div class='not-added' hidden>Verb already in your Favorites</div>
+            <div class='ready-message'>
+              Type verb conjugations in the template below
+            </div>
+          </div>
+        </div>
+
+        <div class='main'>
+          <div class='message'>
+            <div class='close-char' onclick="closeHelp()">x</div>
+            <div class='faq'>
+              <p class='faq-question'> Q: What does Spanish Verb Conjugator do? </p>
+              <p class='faq-answer'> A: It helps you learn Spanish verbs and practice their conjugations </p>
+            </div>
+            <div class='faq'>
+              <p class='faq-question'> Q: What's the verb quiz for?</p>
+              <p class='faq-answer'> A: This is meant to stimulate your interest in Spanish verbs. The quiz generates random test questions. </p>
+            </div>
+            <div class='faq'>
+              <p class='faq-question'> Q: Where do I start? </p>
+              <p class='faq-answer'> A: First search for a specific verb or click to get a random verb. Then fill out the conjugation template.   </p>
+            </div>
+            <div class='faq'>
+              <p class='faq-question'> Q: How do I use a virtual keyboard </p>
+              <p class='faq-answer'> A: You can use the virtual keyboard to input Spanish characters in any field on this form. Simply start typing in the field you want and click on a character when you need it. </p>
+            </div>
+          </div>
+          <div class="user-forms">
+            {% for verb_form in my_list %}
+            <form class='conjugated-forms'>
+              <table>
+                <tr>
+                  <td></td><td colspan=2>{{verb_form[1]}}</td>
+                </tr>
+                <tr>
+                  <td class='pro'>yo</td>
+                  <td><input disabled type="text" class='user-answers' id='{{verb_form[0]}}_1sg' onkeyup="checkAnswers(event)" onblur="leaveField(event)"></td>
+                  <td class='answer'  onclick="showAnswer(event)">answer</td>
+                </tr>
+                <tr>
+                  <td class='pro'>tu</td>
+                  <td><input disabled type="text" class='user-answers' id='{{verb_form[0]}}_2sg' onkeyup="checkAnswers(event)" onblur="leaveField(event)"></td>
+                  <td class='answer'  onclick="showAnswer(event)">answer</td>
+                </tr>
+                <tr>
+                  <td class='pro'>el/ella/Ud.</td>
+                  <td><input disabled type="text" class='user-answers' id='{{verb_form[0]}}_3sg' onkeyup="checkAnswers(event)" onblur="leaveField(event)"></td>
+                  <td class='answer'  onclick="showAnswer(event)">answer</td>
+                </tr>
+                <tr>
+                  <td class='pro'>nosotros</td>
+                  <td><input disabled type="text" class='user-answers' id='{{verb_form[0]}}_1pl' onkeyup="checkAnswers(event)" onblur="leaveField(event)"></td>
+                  <td class='answer' onclick="showAnswer(event)">answer</td>
+                </tr>
+                <tr>
+                  <td class='pro'>vosotros</td>
+                  <td><input disabled type="text" class='user-answers' id='{{verb_form[0]}}_2pl' onkeyup="checkAnswers(event)" onblur="leaveField(event)">
+                  </td><td class='answer' onclick="showAnswer(event)">answer</td>
+                </tr>
+                <tr>
+                  <td class='pro'>ellos/ellas/Uds.</td>
+                  <td><input disabled type="text" class='user-answers' id='{{verb_form[0]}}_3pl' onkeyup="checkAnswers(event)" onblur="leaveField(event)">
+                  <td class='answer' onclick="showAnswer(event)">answer</td>
+                  </td>
+                </tr>
+              </table>
+            </form>
+                {% endfor %}
+          </div>
+
+          <div class='extra'>
+            <div class='quiz'>
+              <h1>
+                Spanish verb quiz
+              </h1>
+              <form id='quiz-questions'>
+                <div id='questions'> </div>
+                <button type='button' id='quiz-sub'>Check your answer</button>
+                <button type='button' id='next-button'>Try another one >> </button>
+              </form>
+
+            </div>
+            <div class='context'>
+
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

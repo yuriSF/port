@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Spanish verb conjugator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/static/all_verbs.js"></script>
+        <script src="/static/index.js"></script>
+        <link rel = "stylesheet" type = "text/css" href = "/static/index.css"/>
+    </head>
+    <body>
+        <div class='top'>
+          <div class='app-header'>
+            Spanish verb conjugator
+          </div>
+          <div class=user-input>
+            <div class=left-menu>
+              <form id="verb-entry">
+                <input id="verb" type="text" name="URL" placeholder="" value=""/><br>
+                <label class='input-label' for="link">enter a verb to practice </label>
+              </form>
+              <p class='or'> OR</p>
+              <div class='random'><p>get a random verb</p></div>
+            </div>
+            <div class=right-menu>
+              <div class='right-items'><a href='/login'>Log in</a></div>
+              <div class='right-items'><a href='/signup'>Sign up</a></div>
+              <div class='right-items'><a onclick='displayHelp()' href='#'>?</a></div>
+              <!-- <div class='comment'>to save your progress</div> -->
+            </div>
+          </div>
+          <div class='verb'>
+            <div class='base'></div>
+            <div class='trans'></div>
+          </div>
+        </div>
+
+        <div class='main'>
+
+          <div class='outer'>
+            Yet another
+
+          <div class="user-forms">
+            {% for verb_form in my_list %}
+            <form class='conjugated-forms'>
+              <table>
+                <tr>
+                  <td></td><td colspan=2>{{verb_form[1]}}</td>
+                </tr>
+                <tr>
+                  <td class='pro'>yo</td>
+                  <td><input type="text" class='user-answers' id='{{verb_form[0]}}_1sg'
+                    onkeyup="checkAnswers('{{verb_form[0]}}_1sg')"></td>
+                    <td class='answer' onclick="showAnswer('{{verb_form[0]}}_1sg')">answer</td>
+                </tr>
+                <tr>
+                  <td class='pro'>tu</td>
+                  <td><input type="text" class='user-answers' id='{{verb_form[0]}}_2sg' onkeyup="checkAnswers('{{verb_form[0]}}_2sg')"></td><td class='answer' onclick="showAnswer('{{verb_form[0]}}_2sg')">answer</td>
+                </tr>
+                <tr>
+                  <td class='pro'>el/ella/Ud.</td>
+                  <td><input type="text" class='user-answers' id='{{verb_form[0]}}_3sg' onkeyup="checkAnswers('{{verb_form[0]}}_3sg')"></td><td class='answer' onclick="showAnswer('{{verb_form[0]}}_3sg')">answer</td>
+                </tr>
+                <tr>
+                  <td class='pro'>nosotros</td>
+                  <td><input type="text" class='user-answers' id='{{verb_form[0]}}_1pl' onkeyup="checkAnswers('{{verb_form[0]}}_1pl')"></td><td class='answer' onclick="showAnswer('{{verb_form[0]}}_1pl')">answer</td>
+                </tr>
+                <tr>
+                  <td class='pro'>vosotros</td>
+                  <td><input type="text" class='user-answers' id='{{verb_form[0]}}_2pl' onkeyup="checkAnswers('{{verb_form[0]}}_2pl')" onblur="leaveField('{{verb_form[0]}}_2pl')"></td><td class='answer' onclick="showAnswer('{{verb_form[0]}}_2pl')">answer</td>
+                </tr>
+                <tr>
+                  <td class='pro'>ellos/ellas/Uds.</td>
+                  <td><input type="text" class='user-answers' id='{{verb_form[0]}}_3pl' onkeyup="checkAnswers('{{verb_form[0]}}_3pl')" ><td class='answer' onclick="showAnswer('{{verb_form[0]}}_3pl')">answer</td>
+                  </td>
+                </tr>
+              </table>
+            </form>
+                {% endfor %}
+          </div>
+          <div class="keyboard">
+            <div class='character' onclick = "writeChar('í')">í</div>
+            <div class='character' onclick = "writeChar('ú')">ú</div>
+            <div class='character' onclick = "writeChar('é')">é</div>
+            <div class='character' onclick = "writeChar('ó')">ó</div>
+            <div class='character' onclick = "writeChar('á')">á</div>
+            <div class='character' onclick = "writeChar('ñ')">ñ</div>
+          </div>
+
+        </div>
+      </div>
+    </body>
+</html>

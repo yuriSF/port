@@ -1,0 +1,4 @@
+import sys
+print(sys.path)
+from package import app
+app.run(port=8000)

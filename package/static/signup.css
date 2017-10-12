@@ -1,0 +1,91 @@
+body {
+  margin: 0pt;
+  font-family: sans-serif;
+}
+
+.top {
+  position: fixed;
+  width: 100%;
+}
+
+.app-header {
+  background-color: #8C1126;
+  color: #FFFFFF;
+  font-size: 20pt;
+  font-weight: bold;
+  text-align: center;
+  padding: 10pt;
+}
+
+.user-input {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 50px;
+  background-color: #FFEBCD;
+  width: 100%;
+  padding-right: 10pt;
+  height: 100%;
+  justify-content: center;
+}
+
+.innerbox {
+  justify-content: space-between;;
+  padding: 30px;
+  background-color: beige;
+  height: 402px;
+  border: 4px solid gray;
+  display: flex;
+  font-size: 16pt;
+  font-family: sans-serif;
+  margin: 15%;
+}
+
+.field {
+  height: 39px;
+  width: 312px;
+}
+
+input {
+  padding: 5px;
+  font-size: 16pt;
+}
+
+.entry {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#sub {
+  margin-top: 20px;
+  font-size: 18pt;
+  width: 120pt;
+
+}
+
+label {
+  padding-bottom: 10px;
+}
+
+a:link {
+  font-weight: bold;
+  color: #8C1126;
+  text-decoration: none;
+}
+
+a:hover {
+  color: green;
+}
+
+.account  {
+  margin-right: 20px;
+  text-align: left;
+}
+
+form {
+  margin-right: 20px;
+  margin-left: 20px;
+}
