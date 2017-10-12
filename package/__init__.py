@@ -1,4 +1,4 @@
-import flask, flask_login
+import flask
 from flask import Flask, Response, flash, redirect, render_template, request, session, abort, jsonify, json
 import config
 import smtplib
